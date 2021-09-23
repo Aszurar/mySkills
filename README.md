@@ -31,7 +31,7 @@ Esse projeto é aprendido durante as aulas do 1º capítulo do Ignite da trilha 
 
 * Adição de habilidades:
 
-  <img src="https://i.imgur.com/6046hZF.jpg" width="300">_____<img src="https://i.imgur.com/2acsDN7.jpg" width="300"> 
+  <img src="https://i.imgur.com/6046hZF.jpg" width="300"><img src="https://i.imgur.com/2acsDN7.jpg" width="300"> 
 _____<img src="https://i.imgur.com/SJtPacm.jpg" width="300"> 
 
 
