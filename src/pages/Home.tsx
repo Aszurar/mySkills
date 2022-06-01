@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, Platform, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Platform, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Button } from '../components/Button/Button';
 import { SkillCard } from '../components/SkillCard/SkillCard';
 
@@ -18,13 +18,13 @@ export function Home() {
         setNewSkill(data)
     }
 
-    function handleAddNewSkill(){
+    function handleAddNewSkill() {
         const data: MySkillsProps = {
             id: String(new Date().getTime()),
             name: newSkill,
         }
 
-        setMySkills( oldState => [...oldState, data] )
+        setMySkills(oldState => [...oldState, data])
         // setMySkills([...mySkills, newSkill])
         // As 2 formas realização a mesma atualização.
     }
@@ -45,32 +45,33 @@ export function Home() {
             setGretting('Good Night 🌙')
         }
     }, [])
-return(
-    
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome, Lucas de Lima</Text>
-        <Text style={styles.grettingText}>{ gretting }</Text>
+    return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
+                <Text style={styles.title}>Welcome, Lucas de Lima</Text>
+                <Text style={styles.grettingText}>{gretting}</Text>
 
-      <TextInput style={styles.textInput} 
-                placeholder="New Skill" 
-                placeholderTextColor="#555"
-                onChangeText={ data => handleNewSkill(data)}
+                <TextInput style={styles.textInput}
+                    placeholder="New Skill"
+                    placeholderTextColor="#555"
+                    onChangeText={data => handleNewSkill(data)}
                 />
-      <Button onPress={handleAddNewSkill}
-              title="Add"
-      />
+                <Button onPress={handleAddNewSkill}
+                    title="Add"
+                />
 
-      <Text style={[styles.title, { marginVertical: 50 }]}>
-            My Skills
-      </Text>
+                <Text style={[styles.title, { marginVertical: 50 }]}>
+                    My Skills
+                </Text>
 
-      <SkillCard 
-        mySkillsValues={mySkills} 
-        RemoveSkill={(id) => handleRemoveSkill(id)}
-        />
-    </View>
+                <SkillCard
+                    mySkillsValues={mySkills}
+                    RemoveSkill={(id) => handleRemoveSkill(id)}
+                />
+            </View>
+        </TouchableWithoutFeedback>
 
-  )
+    )
 }
 
 
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
         color: '#fff',
     },
-    grettingText : {
+    grettingText: {
         color: '#fff',
 
     }
