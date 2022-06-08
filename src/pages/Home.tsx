@@ -12,7 +12,7 @@ interface MySkillsProps {
 export function Home() {
     const [newSkill, setNewSkill] = useState('');
     const [mySkills, setMySkills] = useState<MySkillsProps[]>([]);
-    const [gretting, setGretting] = useState('');
+    const [greeting, setGreeting] = useState('');
 
     function handleNewSkill(data: string) {
         setNewSkill(data)
@@ -38,18 +38,18 @@ export function Home() {
         let currentHour = new Date().getHours(); // resgatando a hora atualização
 
         if (currentHour < 12) {
-            setGretting('Good Morning 🛣')
+            setGreeting('Good Morning 🛣')
         } else if (currentHour >= 12 && currentHour < 18) {
-            setGretting('Good Afternoon ☀')
+            setGreeting('Good Afternoon ☀')
         } else {
-            setGretting('Good Night 🌙')
+            setGreeting('Good Night 🌙')
         }
     }, [])
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
                 <Text style={styles.title}>Welcome, Lucas de Lima</Text>
-                <Text style={styles.grettingText}>{gretting}</Text>
+                <Text style={styles.greetingText}>{greeting}</Text>
 
                 <TextInput style={styles.textInput}
                     placeholder="New Skill"
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
         color: '#fff',
     },
-    grettingText: {
+    greetingText: {
         color: '#fff',
 
     }
