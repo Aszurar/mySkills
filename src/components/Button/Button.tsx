@@ -1,41 +1,47 @@
 import React from 'react';
-import { 
-    TouchableOpacity, 
-    Text, 
-    StyleSheet, 
-    TouchableOpacityProps
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  TouchableOpacityProps
 } from 'react-native';
 
 interface ButtonProps extends TouchableOpacityProps {
-    title: string;
+  title: string;
+  isDelete?: boolean;
 }
 
+const deleteButtonBackgroundColor = {
+  backgroundColor: '#E83F5B',
+}
+const addButtonBackgroundColor = {
+  backgroundColor: '#A370F7',
+}
 
-export function Button({title, ...rest } : ButtonProps) {
-    return(     
-
-    <TouchableOpacity 
-        style={styles.AddSkillButton}
-        activeOpacity={0.7}
-        {...rest}
-        >
-        <Text style={styles.AddSkillButtonText}>{title}</Text>
+export function Button({ title, isDelete = false, ...rest }: ButtonProps) {
+  const backgroundColor = isDelete ? deleteButtonBackgroundColor : addButtonBackgroundColor;
+  return (
+    <TouchableOpacity
+      style={[styles.AddSkillButton, backgroundColor]}
+      activeOpacity={0.7}
+      {...rest}
+    >
+      <Text style={styles.AddSkillButtonText}>{title}</Text>
     </TouchableOpacity>
-    );
+  );
 }
 
 const styles = StyleSheet.create({
-    AddSkillButton: {
-        backgroundColor: '#A370F7',
-        alignItems: 'center',
-        padding: 15,
-        borderRadius: 7,
-        marginTop: 20,
-    },
+  AddSkillButton: {
+    alignItems: 'center',
+    padding: 15,
+    borderRadius: 7,
+    marginVertical: 12,
+  },
 
-    AddSkillButtonText: {
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: 17,
-    },
+  AddSkillButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 17,
+  },
 })
