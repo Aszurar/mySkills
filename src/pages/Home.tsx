@@ -1,72 +1,130 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, Platform, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { Button } from '../components/Button/Button';
-import { SkillCard } from '../components/SkillCard/SkillCard';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TextInput,
+    Platform,
+    TouchableWithoutFeedback,
+    Keyboard,
+    Alert
+} from 'react-native';
 
-interface MySkillsProps {
-    id: string;
-    name: string;
-    date?: string;
-}
+import { AppError } from '../../errors';
+
+import { Button } from '../components/Button/Button';
+import { SkillCards } from '../components/SkillCards';
+
+import { saveSkill } from '../storage/skills/saveSkill';
+import { deleteSkill } from '../storage/skills/deleteSkill';
+import { getAllSkills } from '../storage/skills/getAllSkills';
+import { deleteAllSkills } from '../storage/skills/deleteAllSkills';
+import { SkillItemProps } from '../dto/skillDTO';
+
 
 export function Home() {
     const [newSkill, setNewSkill] = useState('');
-    const [mySkills, setMySkills] = useState<MySkillsProps[]>([]);
+    const [mySkills, setMySkills] = useState<SkillItemProps[]>([]);
     const [greeting, setGreeting] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     function handleNewSkill(data: string) {
         setNewSkill(data)
     }
 
-    function handleAddNewSkill() {
-        const data: MySkillsProps = {
-            id: String(new Date().getTime()),
-            name: newSkill,
-        }
 
-        setMySkills(oldState => [...oldState, data])
-        // setMySkills([...mySkills, newSkill])
-        // As 2 formas realização a mesma atualização.
+    const handleGetAllSkills = async () => {
+        try {
+            setIsLoading(true);
+            const skillsStoraged = await getAllSkills();
+            setMySkills(skillsStoraged)
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false);
+            Alert.alert('Não foi possível carregar os participantes');
+        }
     }
 
-    function handleRemoveSkill(id: string) {
-        let mySkillsUpdate = mySkills.filter(skill => id !== skill.id);
-        setMySkills(mySkillsUpdate);
+    const handleSaveSkill = async () => {
+        try {
+            if (!newSkill || newSkill.trim() === '') return;
+
+            const newData: SkillItemProps = {
+                id: String(new Date().getTime()),
+                name: newSkill,
+            }
+
+            await saveSkill(newData);
+            handleGetAllSkills();
+        } catch (error) {
+            if (error instanceof AppError) {
+                Alert.alert(error.message);
+            } else {
+                Alert.alert('Não foi possível salvar a skill', 'Tente novamente mais tarde');
+            }
+
+        }
+    }
+
+    const handleDeleteSkill = async (skillId: string) => {
+        try {
+            await deleteSkill(skillId);
+            handleGetAllSkills();
+        } catch (error) {
+            Alert.alert('Não foi possível deletar a skill', 'Tente novamente mais tarde');
+            return;
+        }
+    }
+
+    const handleDeleteAllSkills = async () => {
+        try {
+            await deleteAllSkills();
+            handleGetAllSkills();
+        } catch (error) {
+            Alert.alert('Não foi possível deletar as skills', 'Tente novamente mais tarde');
+        }
     }
 
     useEffect(() => {
-        let currentHour = new Date().getHours(); // resgatando a hora atualização
+        let currentHour = new Date().getHours();
 
         if (currentHour < 12) {
-            setGreeting('Good Morning 🛣')
+            setGreeting('Bom dia 🌞')
         } else if (currentHour >= 12 && currentHour < 18) {
-            setGreeting('Good Afternoon ☀')
+            setGreeting('Boa tarde ☀')
         } else {
-            setGreeting('Good Night 🌙')
+            setGreeting('Boa noite 🌙')
         }
+        handleGetAllSkills();
     }, [])
+
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
-                <Text style={styles.title}>Welcome, Lucas de Lima</Text>
+                <Text style={styles.title}>Bem vindo!</Text>
                 <Text style={styles.greetingText}>{greeting}</Text>
 
-                <TextInput style={styles.textInput}
-                    placeholder="New Skill"
+                <TextInput
+                    style={styles.textInput}
+                    placeholder="Nova Skill"
                     placeholderTextColor="#555"
                     onChangeText={data => handleNewSkill(data)}
-                />
-                <Button onPress={handleAddNewSkill}
-                    title="Add"
+                    onSubmitEditing={handleSaveSkill}
                 />
 
-                <Text style={[styles.title, { marginVertical: 50 }]}>
-                    My Skills
-                </Text>
+                <Button title="Adicionar" onPress={handleSaveSkill} />
+                <Text style={[styles.subtitle, styles.title]}>My Skills</Text>
 
-                <SkillCard
+
+                <SkillCards
                     mySkillsValues={mySkills}
-                    RemoveSkill={(id) => handleRemoveSkill(id)}
+                    RemoveSkill={handleDeleteSkill}
+                />
+                <Button
+                    isDelete
+                    title="Deletear todas skills"
+                    onPress={handleDeleteAllSkills}
                 />
             </View>
         </TouchableWithoutFeedback>
@@ -79,7 +137,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#121015',
-        paddingVertical: 70,
+        paddingTop: 24,
         paddingHorizontal: 30,
     },
 
@@ -87,6 +145,9 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 24,
         fontWeight: 'bold'
+    },
+    subtitle: {
+        marginVertical: 24
     },
 
     textInput: {
