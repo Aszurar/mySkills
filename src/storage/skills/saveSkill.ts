@@ -2,8 +2,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { MY_SKILLS_COLLECTION } from '../storageConfig';
 import { getAllSkills } from './getAllSkills';
+
 import { SkillItemProps } from '../../dto/skillDTO';
-import { AppError } from '../../../errors';
+import { AppError } from '../../errors';
 
 
 export async function saveSkill({ id, name }: SkillItemProps) {
@@ -17,7 +18,7 @@ export async function saveSkill({ id, name }: SkillItemProps) {
 
     const isAlreadySaved = skillsStoraged.some(skill => skill.name === name);
     if (isAlreadySaved) {
-      throw new AppError('Skill já cadastrada.');
+      throw new AppError("Cadastrar Skill", 'Skill já cadastrada.');
     }
 
     const storageFormatted = JSON.stringify([...skillsStoraged, newSkill]);
