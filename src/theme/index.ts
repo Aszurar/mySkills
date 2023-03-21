@@ -1,0 +1,15 @@
+export default {
+  COLORS: {
+    BACKGROUND: '#121015',
+    BACKGROUND_SECONDARY: '#1F1E25',
+    BACKGROUND_MODAL: '#00000082',
+
+    TEXT_PRIMARY: 'white',
+    TEXT_SECONDARY: '#6B6B6B',
+
+    HIGHLIGHT: '#A370F7',
+
+    SUCCESS: '#31CF67',
+    DELETE: '#E83F5B',
+  },
+};
