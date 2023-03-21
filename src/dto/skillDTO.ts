@@ -5,4 +5,6 @@ export interface SkillItemProps {
 
 const ITEM_HEIGHT = 44
 
-export {ITEM_HEIGHT}
+const TRY_AGAIN_MESSAGE = "Tente novamente mais tarde"
+
+export {ITEM_HEIGHT, TRY_AGAIN_MESSAGE}
