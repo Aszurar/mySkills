@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacityProps
 } from 'react-native';
+import theme from '../../theme';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
@@ -12,10 +13,10 @@ interface ButtonProps extends TouchableOpacityProps {
 }
 
 const deleteButtonBackgroundColor = {
-  backgroundColor: '#E83F5B',
+  backgroundColor: theme.COLORS.DELETE,
 }
 const addButtonBackgroundColor = {
-  backgroundColor: '#A370F7',
+  backgroundColor: theme.COLORS.HIGHLIGHT,
 }
 
 export function Button({ title, isDelete = false, ...rest }: ButtonProps) {
@@ -34,14 +35,14 @@ export function Button({ title, isDelete = false, ...rest }: ButtonProps) {
 const styles = StyleSheet.create({
   AddSkillButton: {
     alignItems: 'center',
-    padding: 15,
-    borderRadius: 7,
+    padding: 16,
+    borderRadius: 6,
     marginVertical: 12,
   },
 
   AddSkillButtonText: {
-    color: '#fff',
+    color: theme.COLORS.TEXT_PRIMARY,
     fontWeight: 'bold',
-    fontSize: 17,
+    fontSize: 16,
   },
 })

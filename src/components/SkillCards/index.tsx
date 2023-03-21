@@ -2,11 +2,14 @@ import React from 'react';
 import { FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native';
 import { SkillCard } from '../SkillCard';
 import { ITEM_HEIGHT, SkillItemProps } from '../../dto/skillDTO';
+import theme from '../../theme';
 
 
 interface MySkillsProps {
   mySkillsValues: SkillItemProps[];
   RemoveSkill: (id: string) => void;
+  isLoading: boolean;
+  onRefresh: () => Promise<void>;
 }
 
 const keyExtractor = (item: SkillItemProps) => item.id;
@@ -20,7 +23,12 @@ const getItemLayout = (_: SkillItemProps[] | null | undefined, index: number) =>
   index
 })
 
-export function SkillCards({ mySkillsValues, RemoveSkill }: MySkillsProps) {
+export function SkillCards({
+  isLoading,
+  onRefresh,
+  RemoveSkill,
+  mySkillsValues,
+}: MySkillsProps) {
   const SkillCardItemList = ({ item }: { item: SkillItemProps }) => (
     <SkillCard item={item} RemoveSkill={RemoveSkill} />
   );
@@ -36,11 +44,9 @@ export function SkillCards({ mySkillsValues, RemoveSkill }: MySkillsProps) {
       contentContainerStyle={styles.contentContainerStyle}
       refreshControl={
         <RefreshControl
-          colors={[
-            "#A370F7",
-          ]}
-          refreshing={false}
-          onRefresh={() => { }}
+          colors={[theme.COLORS.HIGHLIGHT]}
+          refreshing={isLoading}
+          onRefresh={onRefresh}
         />
       }
     />
@@ -50,7 +56,7 @@ export function SkillCards({ mySkillsValues, RemoveSkill }: MySkillsProps) {
 
 const styles = StyleSheet.create({
   emptyListText: {
-    color: '#fff',
+    color: theme.COLORS.TEXT_PRIMARY,
     fontSize: 16,
     textAlign: 'center',
     flex: 1,

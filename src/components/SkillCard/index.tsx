@@ -9,6 +9,7 @@ import {
 
 import { ITEM_HEIGHT, SkillItemProps } from '../../dto/skillDTO';
 
+import theme from '../../theme';
 
 
 interface MySkillsPropsValues extends TouchableOpacityProps {
@@ -32,14 +33,14 @@ export function SkillCard({ item, RemoveSkill, ...rest }: MySkillsPropsValues) {
 const styles = StyleSheet.create({
   skillCard: {
     alignItems: 'center',
-    backgroundColor: '#1f1e25',
+    backgroundColor: theme.COLORS.BACKGROUND_SECONDARY,
     height: ITEM_HEIGHT,
     justifyContent: 'center',
     borderRadius: 50,
   },
 
   skillTitle: {
-    color: '#fff',
+    color: theme.COLORS.TEXT_PRIMARY,
     fontWeight: 'bold',
     fontSize: 16
   }
