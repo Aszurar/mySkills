@@ -40,6 +40,8 @@ export function Home() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [footerWithConfirmButton, setfooterWithConfirmButton] = useState(false);
 
+  const skillsQuantity = mySkills.length;
+
   function handleOpenModal({
     title,
     subtitle,
@@ -92,6 +94,7 @@ export function Home() {
       }
 
       await saveSkill(newData);
+      setNewSkill('');
       handleGetAllSkills();
     } catch (error) {
       if (error instanceof AppError) {
@@ -132,6 +135,7 @@ export function Home() {
         },
         {
           text: 'Sim',
+          style: 'destructive',
           onPress: () => handleDeleteSkill(skillId)
         }
       ]
@@ -160,6 +164,7 @@ export function Home() {
         },
         {
           text: 'Sim',
+          style: 'destructive',
           onPress: handleDeleteAllSkills
         }
       ]
@@ -188,6 +193,7 @@ export function Home() {
           <Text style={styles.greetingText}>{greeting}</Text>
 
           <TextInput
+            value={newSkill}
             style={styles.textInput}
             placeholder="Nova Skill"
             placeholderTextColor={theme.COLORS.TEXT_SECONDARY}
@@ -196,7 +202,10 @@ export function Home() {
           />
 
           <Button title="Adicionar" onPress={handleSaveSkill} />
-          <Text style={[styles.subtitle, styles.title]}>My Skills</Text>
+          <View style={styles.subtitleContainer}>
+            <Text style={[styles.subtitle, styles.title]}>My Skills</Text>
+            <Text style={[styles.subtitle, styles.title]}>{skillsQuantity}</Text>
+          </View>
 
 
           <SkillCards
@@ -206,11 +215,16 @@ export function Home() {
             RemoveSkill={handleOpenDeleteSkillAlert}
           />
 
-          <Button
-            isDelete
-            title="Deletar todas skills"
-            onPress={handleOpenDeleteAllSkillsAlert}
-          />
+          {
+            skillsQuantity > 0 && (
+              <Button
+                isDelete
+                title="Deletar todas skills"
+                onPress={handleOpenDeleteAllSkillsAlert}
+              />
+            )
+          }
+
         </View>
       </TouchableWithoutFeedback>
 
@@ -245,9 +259,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold'
   },
+  subtitleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   subtitle: {
     marginVertical: 24
   },
+
 
   textInput: {
     fontSize: 16,
