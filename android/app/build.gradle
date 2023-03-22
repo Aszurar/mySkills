@@ -131,7 +131,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.myskills"
+        applicationId "com.aszurar_myskills"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
