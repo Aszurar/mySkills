@@ -53,7 +53,6 @@ ___
     - Lista todas habilidades adicionadas.
     - Remover uma habilidade por vez ou todas de uma vez.
     - Persistência de dados com AsyncStorage.
-    - 
 1. **Cadastro do nome e data do evento**
    <div align="center" >
       <img src="https://i.imgur.com/xdoaCIq.png" width="1000">
