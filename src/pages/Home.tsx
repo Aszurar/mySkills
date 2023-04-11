@@ -96,6 +96,7 @@ export function Home() {
       await saveSkill(newData);
       setNewSkill('');
       handleGetAllSkills();
+      Keyboard.dismiss();
     } catch (error) {
       if (error instanceof AppError) {
         const { message } = error
