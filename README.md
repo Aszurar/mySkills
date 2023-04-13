@@ -1,5 +1,5 @@
-<div align="center">
-    <img src="https://i.imgur.com/PN3xCfc.png" width="800">
+<div>
+    <img src="https://i.imgur.com/PN3xCfc.png" width="1000">
 </div>
 
 # MySkills
