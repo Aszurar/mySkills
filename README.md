@@ -1,3 +1,7 @@
+<div align="center">
+    <img src="https://i.imgur.com/PN3xCfc.png" width="800">
+</div>
+
 # MySkills
  O projeto **myskills** é um aplicativo mobile para listar habilidades e tecnologias aprendidas.
 <p> - O aplicativo foi enviando para produção com todo seu ciclo de CI/CD automatizado para o Android:</p>
