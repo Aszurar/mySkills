@@ -3,7 +3,9 @@
 </div>
 
 # MySkills
- O projeto **myskills** é um aplicativo mobile para listar habilidades e tecnologias aprendidas.
+
+O projeto **myskills** é um aplicativo mobile para listar habilidades e tecnologias aprendidas.
+
 <p> - O aplicativo foi enviando para produção com todo seu ciclo de CI/CD automatizado para o Android:</p>
 
 <div display="flex">
@@ -18,7 +20,7 @@
   </div>
 </div>
 
----
+---\*\*\*\*
 
 <div>
         <h3 align="center">
@@ -33,7 +35,7 @@
         </h3>
 </div>
 
-___
+---
 
 <div align="center" >
     <img src="https://i.imgur.com/RBRKzXM.gif" width="200">____<img src="https://i.imgur.com/COthYiv.gif" width=200>
@@ -41,9 +43,10 @@ ___
 
 - [**Link do vídeo completo sobre o projeto**](https://youtube.com/shorts/RqFc1VMc_1g?feature=share)
 
-___
+---
 
 ## :information_source: Sobre
+
 - A ideia desse aplicativo é poder listar todas suas habilidades e removê-las. Ou seja, é basicamente uma aplicação CRUD básica, onde temos uma listagem, cadastro e remoção de dados.
 - É o 1º projeto do bootcamp **Ignite da trilha React Native 2021 da [Rocketseat](https://www.rocketseat.com.br/)**
   - **Originalmente o projeto não tinha funcionalidade de persistência de dados, mas foi adicionado o AsyncStorage para que os dados não sejam perdidos ao fechar o aplicativo.**
@@ -57,25 +60,39 @@ ___
     - Lista todas habilidades adicionadas.
     - Remover uma habilidade por vez ou todas de uma vez.
     - Persistência de dados com AsyncStorage.
+
 1. **Cadastro do nome e data do evento**
    <div align="center" >
       <img src="https://i.imgur.com/xdoaCIq.png" width="1000">
    </div>
 
 2. **Remoção de habilidades**
-  <div align="center" >
-    <img src="https://i.imgur.com/CWjUOXb.png" width="1000">
-  </div>
+<div align="center" >
+  <img src="https://i.imgur.com/CWjUOXb.png" width="1000">
+</div>
 
 ---
 
 ## :interrobang: Motivo
 
-- Esse projeto tem o objetivo de praticar os conceitos básicos do React Native e seus componentes e suas propriedades, variável Estado, manipulações de variável Estado, estilização com StyleSheet, componentização e formas de passar dados/funções para componentes criados, além de praticar o uso de TypeScript e também de algumas libs como o AsyncStorage. 
+- Esse projeto tem o objetivo de praticar os conceitos básicos do React Native e seus componentes e suas propriedades, variável Estado, manipulações de variável Estado, estilização com StyleSheet, componentização e formas de passar dados/funções para componentes criados, além de praticar o uso de TypeScript e também de algumas libs como o AsyncStorage.
 - É um projeto simples, mas que trata da base de um aplicativo mobile, onde temos uma listagem, cadastro e remoção.
 - É o 1º projeto do bootcamp **Ignite da trilha React Native 2021 da [Rocketseat](https://www.rocketseat.com.br/)**
 - Assim, nesse primeiro módulo focamos na interface e nos conceitos básicos do React Native. Com isso, **toda essa parte de persistência de dados com Async-Storage foram melhorados e adicionados por mim.**
-___
+
+---
+
+## :art: Design
+
+<div align="center" >
+
+[**MySkills**](https://www.figma.com/file/CnSmWyPuHQK2f3yne2pLP5/mySkills?type=design&node-id=0%3A1&t=8OVYpfr4XQghnqiV-1)
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FCnSmWyPuHQK2f3yne2pLP5%2FmySkills%3Ftype%3Ddesign%26node-id%3D0%253A1%26t%3Dykw0eIn3rbb0xIvW-1" allowfullscreen></iframe>
+</div>
+
+---
+
 ## :seedling: Requisitos Mínimos
 
 - Android Studio
@@ -86,10 +103,12 @@ ___
 - TypeScript
 - Yarn(ou NPM)
 
-___
-## :rocket: Tecnologias Utilizadas 
+---
+
+## :rocket: Tecnologias Utilizadas
 
 O projeto foi desenvolvido utilizando as seguintes tecnologias
+
 - [Android Studio](https://developer.android.com/studio)
 - [Async Storage](https://react-native-async-storage.github.io/async-storage/)
 - [Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
@@ -98,14 +117,16 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 - [React Native](https://reactnative.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Yarn](https://classic.yarnpkg.com/blog/2017/05/12/introducing-yarn/)
-___
+
+---
 
 ## :truck: Entrega e distribuição continua
 
 - Para a publicação do aplicativo, primeiro foi gerada a build manualmente com o comando <code>**./gradlew bundleRelease**</code>, utilizando o build.gradle dentro da pasta android, que foi configurado com enableProguardInReleaseBuilds e enableHermes como true.
 - Essa build foi enviada para o Google Play Console, onde todas as configurações do projeto Android foram personalizadas, incluindo a descrição, nome e imagens do aplicativo.
 
-- Em seguida, foi integrado o repositório remoto do projeto, que está aqui no GitHub, com a plataforma **[App Center](https://appcenter.ms/) da Microsoft para realizar o CI/CD**. 
+- Em seguida, foi integrado o repositório remoto do projeto, que está aqui no GitHub, com a plataforma **[App Center](https://appcenter.ms/) da Microsoft para realizar o CI/CD**.
+
   - **O App Center observa a branch main, que é a de produção, e toda vez que houver algum push nessa branch, ele automaticamente gera uma nova build do aplicativo e envia para a Google Play Store.**
 
 - Antes de usar o App Center, foi realizada toda a configuração necessária para que a plataforma possa realizar esse processo de forma automática e também foi necessário configurações no Google Cloud Platform e no Google Play Console.
@@ -123,24 +144,26 @@ ___
 
 ## :package: Como baixar e executar o projeto
 
-  - Clonar o projeto:
-    ```bash
-     git clone https://github.com/Aszurar/myskills.git
-    ```
-  - É necessário a instalação do yarn de acordo com seu sistema operacional, para isso veja como no site do [Yarn](https://classic.yarnpkg.com/blog/2017/05/12/introducing-yarn/)
-  - Instalação das dependências:
-    - Execute o comando abaixo dentro da pasta do projeto 
-    ```bash
-      yarn
-    ```
- - É necessário a instalação do emulador [Android Studio](https://developer.android.com/studio) e das tecnologias requesitadas acima no **:seedling: Requisitos Mínimos**
- - Também é necessário a instalação/configuração de outras tecnologias, para isso siga os passos indicados nessa página de acordo com seu sistema operacional: [Executando uma Aplicação React-Native emulando Windows/Linux/MacOS ou direto no dispositivo mobile Android/IOS](https://react-native.rocketseat.dev/android/linux)
- - Execução
-  - Com o emulador android aberto ou o dispositivo móvel físico conecatdo via USB:
-  - **Abra a pasta do projeto com alguma IDE(Vscode) ou simplesmente abra o terminal na pasta do projeto e execute o comando abaixo:**
+- Clonar o projeto:
   ```bash
-     yarn android
+   git clone https://github.com/Aszurar/myskills.git
   ```
+- É necessário a instalação do yarn de acordo com seu sistema operacional, para isso veja como no site do [Yarn](https://classic.yarnpkg.com/blog/2017/05/12/introducing-yarn/)
+- Instalação das dependências:
+  - Execute o comando abaixo dentro da pasta do projeto
+  ```bash
+    yarn
+  ```
+- É necessário a instalação do emulador [Android Studio](https://developer.android.com/studio) e das tecnologias requesitadas acima no **:seedling: Requisitos Mínimos**
+- Também é necessário a instalação/configuração de outras tecnologias, para isso siga os passos indicados nessa página de acordo com seu sistema operacional: [Executando uma Aplicação React-Native emulando Windows/Linux/MacOS ou direto no dispositivo mobile Android/IOS](https://react-native.rocketseat.dev/android/linux)
+- Execução
+- Com o emulador android aberto ou o dispositivo móvel físico conecatdo via USB:
+- **Abra a pasta do projeto com alguma IDE(Vscode) ou simplesmente abra o terminal na pasta do projeto e execute o comando abaixo:**
+
+```bash
+   yarn android
+```
+
 - Caso o metro-bundle não funcione, execute como abaixo:
   1. Executando o metro-bundle:
      ```bash
@@ -151,14 +174,17 @@ ___
          yarn android
      ```
 - Caso esteja no IOS, após as configurações faladas anteriormente até no link mencionado acima, então execute o comando abaixo:
+
   ```bash
       pod install
   ```
+
   ```bash
       yarn ios
   ```
 
 - Lembrando que, caso seja executado pelo emulador, o ideal é sempre deixa-lo aberto antes de aplicar os comandos acima.
-___
-Desenvolvido por :star2: Lucas de Lima Martins de Souza.
 
+---
+
+Desenvolvido por :star2: Lucas de Lima Martins de Souza.
