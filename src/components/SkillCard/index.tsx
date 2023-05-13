@@ -4,13 +4,12 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  TouchableOpacityProps
+  TouchableOpacityProps,
 } from 'react-native';
 
 import { ITEM_HEIGHT, SkillItemProps } from '../../dto/skillDTO';
 
 import theme from '../../theme';
-
 
 interface MySkillsPropsValues extends TouchableOpacityProps {
   item: SkillItemProps;
@@ -22,13 +21,11 @@ export function SkillCard({ item, RemoveSkill, ...rest }: MySkillsPropsValues) {
     <TouchableOpacity
       style={styles.skillCard}
       onPress={() => RemoveSkill(item.id)}
-      {...rest}
-    >
+      {...rest}>
       <Text style={styles.skillTitle}>{item.name}</Text>
     </TouchableOpacity>
   );
 }
-
 
 const styles = StyleSheet.create({
   skillCard: {
@@ -42,6 +39,6 @@ const styles = StyleSheet.create({
   skillTitle: {
     color: theme.COLORS.TEXT_PRIMARY,
     fontWeight: 'bold',
-    fontSize: 16
-  }
-})
+    fontSize: 16,
+  },
+});

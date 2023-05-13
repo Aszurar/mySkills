@@ -3,8 +3,8 @@ export interface SkillItemProps {
   name: string;
 }
 
-const ITEM_HEIGHT = 44
+const ITEM_HEIGHT = 44;
 
-const TRY_AGAIN_MESSAGE = "Tente novamente mais tarde"
+const TRY_AGAIN_MESSAGE = 'Tente novamente mais tarde.';
 
-export {ITEM_HEIGHT, TRY_AGAIN_MESSAGE}
+export { ITEM_HEIGHT, TRY_AGAIN_MESSAGE };

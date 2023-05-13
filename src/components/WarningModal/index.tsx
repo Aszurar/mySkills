@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import theme from '../../theme';
 
@@ -13,7 +9,7 @@ export type WarningModalProps = {
   subtitle?: string;
   onCloseModal(): void;
   footerWithConfirmButton?: boolean;
-}
+};
 
 export function WarningModal({
   title,
@@ -27,38 +23,45 @@ export function WarningModal({
         <View>
           <Text style={styles.title}>{title}</Text>
         </View>
-        {
-          !!subtitle && (
-            <View style={styles.subtitleContainer}>
-              <Text style={styles.subtitle}>{subtitle}</Text>
-            </View>
-          )
-        }
+        {!!subtitle && (
+          <View style={styles.subtitleContainer}>
+            <Text style={styles.subtitle}>{subtitle}</Text>
+          </View>
+        )}
 
         <View style={styles.footer}>
-          {
-            footerWithConfirmButton ? (
-              <View style={styles.buttonsContainer}>
-                <TouchableOpacity onPress={onCloseModal} style={styles.button}>
-                  <Text style={[styles.buttonText, { color: theme.COLORS.DELETE }]}>não</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={onCloseModal} style={styles.button}>
-                  <Text style={[styles.buttonText, { color: theme.COLORS.SUCCESS }]}>sim</Text>
-                </TouchableOpacity>
-              </View>
-            ) : (
+          {footerWithConfirmButton ? (
+            <View style={styles.buttonsContainer}>
               <TouchableOpacity onPress={onCloseModal} style={styles.button}>
-                <Text style={[styles.buttonText, { color: theme.COLORS.TEXT_PRIMARY }]}>ok</Text>
+                <Text
+                  style={[styles.buttonText, { color: theme.COLORS.DELETE }]}>
+                  não
+                </Text>
               </TouchableOpacity>
-            )
-          }
+
+              <TouchableOpacity onPress={onCloseModal} style={styles.button}>
+                <Text
+                  style={[styles.buttonText, { color: theme.COLORS.SUCCESS }]}>
+                  sim
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <TouchableOpacity onPress={onCloseModal} style={styles.button}>
+              <Text
+                style={[
+                  styles.buttonText,
+                  { color: theme.COLORS.TEXT_PRIMARY },
+                ]}>
+                ok
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </View>
   );
 }
-
 
 export const styles = StyleSheet.create({
   modalContainer: {
@@ -111,7 +114,7 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     textTransform: 'uppercase',
   },
 });

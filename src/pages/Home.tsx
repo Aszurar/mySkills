@@ -1,33 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Platform,
-  TouchableWithoutFeedback,
+  Alert,
   Keyboard,
   Modal,
-  Alert
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native';
 
-
-import { Button } from '../components/Button/Button';
-import { SkillCards } from '../components/SkillCards';
 import { WarningModal, WarningModalProps } from '../components/WarningModal';
-
-import { saveSkill } from '../storage/skills/saveSkill';
-import { deleteSkill } from '../storage/skills/deleteSkill';
-import { getAllSkills } from '../storage/skills/getAllSkills';
-import { deleteAllSkills } from '../storage/skills/deleteAllSkills';
+import { SkillCards } from '../components/SkillCards';
+import { Button } from '../components/Button/Button';
 
 import { SkillItemProps, TRY_AGAIN_MESSAGE } from '../dto/skillDTO';
 
 import theme from '../theme';
+import { saveSkill } from '../storage/skills/saveSkill';
+import { getAllSkills } from '../storage/skills/getAllSkills';
+import { deleteSkill } from '../storage/skills/deleteSkill';
+import { deleteAllSkills } from '../storage/skills/deleteAllSkills';
 import { AppError } from '../errors';
 
-type handleOpenModalProps = Omit<WarningModalProps, "onCloseModal">
-
+type handleOpenModalProps = Omit<WarningModalProps, 'onCloseModal'>;
 
 export function Home() {
   const [newSkill, setNewSkill] = useState('');
@@ -38,22 +36,18 @@ export function Home() {
   const [titleModal, setTitleModal] = useState('');
   const [subtitleModal, setSubtitleModal] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [footerWithConfirmButton, setfooterWithConfirmButton] = useState(false);
+  const [footerWithConfirmButton, setFooterWithConfirmButton] = useState(false);
 
   const skillsQuantity = mySkills.length;
 
-  function handleOpenModal({
-    title,
-    subtitle,
-    footerWithConfirmButton,
-  }: handleOpenModalProps) {
+  function handleOpenModal({ title, subtitle }: handleOpenModalProps) {
     setIsModalVisible(true);
     setTitleModal(title);
     if (subtitle) {
       setSubtitleModal(subtitle);
     }
     if (footerWithConfirmButton) {
-      setfooterWithConfirmButton(footerWithConfirmButton);
+      setFooterWithConfirmButton(footerWithConfirmButton);
     }
   }
 
@@ -61,37 +55,38 @@ export function Home() {
     setIsModalVisible(false);
     setTitleModal('');
     setSubtitleModal('');
-    setfooterWithConfirmButton(false);
+    setFooterWithConfirmButton(false);
   }
 
-
   function handleNewSkill(data: string) {
-    setNewSkill(data)
+    setNewSkill(data);
   }
 
   const handleGetAllSkills = async () => {
     try {
       setIsLoading(true);
       const skillsStoraged = await getAllSkills();
-      setMySkills(skillsStoraged)
+      setMySkills(skillsStoraged);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
       handleOpenModal({
         title: 'Não foi possível carregar os participantes',
         subtitle: TRY_AGAIN_MESSAGE,
-      })
+      });
     }
-  }
+  };
 
   const handleSaveSkill = async () => {
     try {
-      if (!newSkill || newSkill.trim() === '') return;
+      if (!newSkill || newSkill.trim() === '') {
+        return;
+      }
 
       const newData: SkillItemProps = {
         id: String(new Date().getTime()),
         name: newSkill,
-      }
+      };
 
       await saveSkill(newData);
       setNewSkill('');
@@ -99,19 +94,19 @@ export function Home() {
       Keyboard.dismiss();
     } catch (error) {
       if (error instanceof AppError) {
-        const { message } = error
+        const { message } = error;
         handleOpenModal({
           title: message,
-          subtitle: error.secondMessage
-        })
+          subtitle: error.secondMessage,
+        });
       } else {
         handleOpenModal({
           title: 'Não foi possível salvar a skill',
           subtitle: TRY_AGAIN_MESSAGE,
-        })
+        });
       }
     }
-  }
+  };
 
   const handleDeleteSkill = async (skillId: string) => {
     try {
@@ -121,26 +116,22 @@ export function Home() {
       handleOpenModal({
         title: 'Não foi possível deletar a skill',
         subtitle: TRY_AGAIN_MESSAGE,
-      })
+      });
     }
-  }
+  };
 
   function handleOpenDeleteSkillAlert(skillId: string) {
-    Alert.alert(
-      'Deletar Skill',
-      'Tem certeza que deseja deletar essa skill?',
-      [
-        {
-          text: 'Não',
-          style: 'cancel'
-        },
-        {
-          text: 'Sim',
-          style: 'destructive',
-          onPress: () => handleDeleteSkill(skillId)
-        }
-      ]
-    )
+    Alert.alert('Deletar Skill', 'Tem certeza que deseja deletar essa skill?', [
+      {
+        text: 'Não',
+        style: 'cancel',
+      },
+      {
+        text: 'Sim',
+        style: 'destructive',
+        onPress: () => handleDeleteSkill(skillId),
+      },
+    ]);
   }
 
   const handleDeleteAllSkills = async () => {
@@ -151,9 +142,10 @@ export function Home() {
       handleOpenModal({
         title: 'Não foi possível deletar as skills',
         subtitle: TRY_AGAIN_MESSAGE,
-      })
+      });
     }
-  }
+  };
+
   function handleOpenDeleteAllSkillsAlert() {
     Alert.alert(
       'Deletar todas Skills',
@@ -161,30 +153,30 @@ export function Home() {
       [
         {
           text: 'Não',
-          style: 'cancel'
+          style: 'cancel',
         },
         {
           text: 'Sim',
           style: 'destructive',
-          onPress: handleDeleteAllSkills
-        }
-      ]
-    )
+          onPress: handleDeleteAllSkills,
+        },
+      ],
+    );
   }
 
   useEffect(() => {
     let currentHour = new Date().getHours();
 
     if (currentHour < 12) {
-      setGreeting('Bom dia 🌞')
+      setGreeting('Bom dia 🌞');
     } else if (currentHour >= 12 && currentHour < 18) {
-      setGreeting('Boa tarde ☀')
+      setGreeting('Boa tarde ☀');
     } else {
-      setGreeting('Boa noite 🌙')
+      setGreeting('Boa noite 🌙');
     }
     handleGetAllSkills();
-  }, [])
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -204,10 +196,9 @@ export function Home() {
 
           <Button title="Adicionar" onPress={handleSaveSkill} />
           <View style={styles.subtitleContainer}>
-            <Text style={[styles.subtitle, styles.title]}>My Skills</Text>
-            <Text style={[styles.subtitle, styles.title]}>{skillsQuantity}</Text>
+            <Text style={styles.title}>My Skills</Text>
+            <Text style={styles.title}>{skillsQuantity}</Text>
           </View>
-
 
           <SkillCards
             isLoading={isLoading}
@@ -216,24 +207,17 @@ export function Home() {
             RemoveSkill={handleOpenDeleteSkillAlert}
           />
 
-          {
-            skillsQuantity > 0 && (
-              <Button
-                isDelete
-                title="Deletar todas skills"
-                onPress={handleOpenDeleteAllSkillsAlert}
-              />
-            )
-          }
-
+          {skillsQuantity > 0 && (
+            <Button
+              isDelete
+              title="Deletar todas skills"
+              onPress={handleOpenDeleteAllSkillsAlert}
+            />
+          )}
         </View>
       </TouchableWithoutFeedback>
 
-      <Modal
-        transparent
-        animationType='fade'
-        visible={isModalVisible}
-      >
+      <Modal transparent animationType="fade" visible={isModalVisible}>
         <WarningModal
           title={titleModal}
           subtitle={subtitleModal}
@@ -241,11 +225,9 @@ export function Home() {
           footerWithConfirmButton={footerWithConfirmButton}
         />
       </Modal>
-
     </>
-  )
+  );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -258,16 +240,13 @@ const styles = StyleSheet.create({
   title: {
     color: theme.COLORS.TEXT_PRIMARY,
     fontSize: 24,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   subtitleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginVertical: 24,
   },
-  subtitle: {
-    marginVertical: 24
-  },
-
 
   textInput: {
     fontSize: 16,
@@ -279,6 +258,5 @@ const styles = StyleSheet.create({
   },
   greetingText: {
     color: theme.COLORS.TEXT_PRIMARY,
-
-  }
-})
+  },
+});

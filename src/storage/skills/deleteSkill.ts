@@ -7,7 +7,7 @@ export async function deleteSkill(skillId: string) {
   try {
     const skillsStoraged = await getAllSkills();
 
-    const skillsFiltered = skillsStoraged.filter((skill) => skill.id !== skillId);
+    const skillsFiltered = skillsStoraged.filter(skill => skill.id !== skillId);
 
     const skillsFilteredFormatted = JSON.stringify(skillsFiltered);
 

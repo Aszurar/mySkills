@@ -1,10 +1,12 @@
 import React from 'react';
+
 import {
-  TouchableOpacity,
-  Text,
   StyleSheet,
-  TouchableOpacityProps
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
 } from 'react-native';
+
 import theme from '../../theme';
 
 interface ButtonProps extends TouchableOpacityProps {
@@ -14,19 +16,20 @@ interface ButtonProps extends TouchableOpacityProps {
 
 const deleteButtonBackgroundColor = {
   backgroundColor: theme.COLORS.DELETE,
-}
+};
 const addButtonBackgroundColor = {
   backgroundColor: theme.COLORS.HIGHLIGHT,
-}
+};
 
 export function Button({ title, isDelete = false, ...rest }: ButtonProps) {
-  const backgroundColor = isDelete ? deleteButtonBackgroundColor : addButtonBackgroundColor;
+  const backgroundColor = isDelete
+    ? deleteButtonBackgroundColor
+    : addButtonBackgroundColor;
   return (
     <TouchableOpacity
       style={[styles.AddSkillButton, backgroundColor]}
       activeOpacity={0.7}
-      {...rest}
-    >
+      {...rest}>
       <Text style={styles.AddSkillButtonText}>{title}</Text>
     </TouchableOpacity>
   );
@@ -45,4 +48,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
-})
+});

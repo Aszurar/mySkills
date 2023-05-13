@@ -1,8 +1,8 @@
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { MY_SKILLS_COLLECTION } from '../storageConfig';
 import { SkillItemProps } from '../../dto/skillDTO';
+
+import { MY_SKILLS_COLLECTION } from '../storageConfig';
 
 export async function getAllSkills() {
   try {
