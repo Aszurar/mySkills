@@ -20,7 +20,7 @@ O projeto **myskills** é um aplicativo mobile para listar habilidades e tecnolo
   </div>
 </div>
 
----\*\*\*\*
+---
 
 <div>
         <h3 align="center">
@@ -86,11 +86,11 @@ O projeto **myskills** é um aplicativo mobile para listar habilidades e tecnolo
 - O Design do projeto é baseado no visual do projeto ensinado no 1 módulo do bootcamp Ignite de React Native da Rockeseat.
 - Não é disponibilizado o design do projeto no Figma nesse módulo por ser simples, fazemos baseado no vídeo. 
 - Com isso, recriei todo design no Figma com as seções de:
- - Interface 
- - Componentes e Variantes
- - Guia de Cores
- - Ícones e Splash Screen
- - Assets para lojas da Google
+  - Interface 
+  - Componentes e Variantes
+  - Guia de Cores
+  - Ícones e Splash Screen
+  - Assets para lojas da Google
 - Além disso, adicionei navegação/interação demonstrando as ações que o usuário pode fazer com o protótipo do Figma.
 
 <div align="center" >
