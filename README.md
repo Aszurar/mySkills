@@ -116,6 +116,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 - [NodeJS](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
 - [React Native](https://reactnative.dev/)
+- [React Native Splash Screen](https://www.npmjs.com/package/react-native-splash-screen)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Yarn](https://classic.yarnpkg.com/blog/2017/05/12/introducing-yarn/)
 
