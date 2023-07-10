@@ -31,7 +31,7 @@ module.exports = {
               },
               {
                 pattern:
-                  '{react-native,expo*,expo,@expo/**,expo-*,@expo-*,@expo-**,@expo-google-fonts/**,@expo/*,expo/*}',
+                  '{react-native,expo*,expo,expo-*,expo-,expo/,expo/**,expo-**/**,expo-**,@expo/**,@expo-*,@expo-**,@expo-google-fonts/**,@expo/*,expo/*}',
                 group: 'external',
                 position: 'before',
               },
