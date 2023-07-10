@@ -1,6 +1,4 @@
 {
     "deepscan.enable": true,
-    "cSpell.words": [
-        "Storaged"
-    ]
+    "java.compile.nullAnalysis.mode": "automatic"
 }
