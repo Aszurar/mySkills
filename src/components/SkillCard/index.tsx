@@ -7,7 +7,7 @@ import {
   TouchableOpacityProps,
 } from 'react-native';
 
-import { ITEM_HEIGHT, SkillItemProps } from '../../dto/skillDTO';
+import { ITEM_HEIGHT, SkillItemProps } from '../dto/skill';
 
 import theme from '../../theme';
 

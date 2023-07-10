@@ -4,6 +4,7 @@ import {
   Alert,
   Keyboard,
   Modal,
+  // Modal,
   Platform,
   StyleSheet,
   Text,
@@ -12,18 +13,17 @@ import {
   View,
 } from 'react-native';
 
-import { WarningModal, WarningModalProps } from '../components/WarningModal';
-import { SkillCards } from '../components/SkillCards';
-import { Button } from '../components/Button/Button';
+import { WarningModal, WarningModalProps } from '../../components/WarningModal';
+import { SkillCards } from '../../components/SkillCards';
+import { SkillItemProps, TRY_AGAIN_MESSAGE } from '../../components/dto/skill';
+import { Button } from '../../components/Button';
 
-import { SkillItemProps, TRY_AGAIN_MESSAGE } from '../dto/skillDTO';
-
-import theme from '../theme';
-import { saveSkill } from '../storage/skills/saveSkill';
-import { getAllSkills } from '../storage/skills/getAllSkills';
-import { deleteSkill } from '../storage/skills/deleteSkill';
-import { deleteAllSkills } from '../storage/skills/deleteAllSkills';
-import { AppError } from '../errors';
+import theme from '../../theme';
+import { saveSkill } from '../../storage/skills/saveSkill';
+import { getAllSkills } from '../../storage/skills/getAllSkills';
+import { deleteSkill } from '../../storage/skills/deleteSkill';
+import { deleteAllSkills } from '../../storage/skills/deleteAllSkills';
+import { AppError } from '../../errors';
 
 type handleOpenModalProps = Omit<WarningModalProps, 'onCloseModal'>;
 
