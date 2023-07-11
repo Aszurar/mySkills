@@ -13,6 +13,8 @@ import {
   View,
 } from 'react-native';
 
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 import { WarningModal, WarningModalProps } from '../../components/WarningModal';
 import { SkillCards } from '../../components/SkillCards';
 import { SkillItemProps, TRY_AGAIN_MESSAGE } from '../../components/dto/skill';
@@ -179,7 +181,7 @@ export function Home() {
   }, []);
 
   return (
-    <>
+    <SafeAreaView style={styles.safeArea}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
           <Text style={styles.title}>Bem vindo!</Text>
@@ -189,6 +191,7 @@ export function Home() {
             value={newSkill}
             style={styles.textInput}
             placeholder="Nova Skill"
+            selectionColor={theme.COLORS.HIGHLIGHT}
             placeholderTextColor={theme.COLORS.TEXT_SECONDARY}
             onChangeText={data => handleNewSkill(data)}
             onSubmitEditing={handleSaveSkill}
@@ -225,11 +228,15 @@ export function Home() {
           footerWithConfirmButton={footerWithConfirmButton}
         />
       </Modal>
-    </>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: theme.COLORS.BACKGROUND,
+  },
   container: {
     flex: 1,
     backgroundColor: theme.COLORS.BACKGROUND,
